@@ -12,3 +12,26 @@
     background-color: white;
     margin: 10px
 }
+
+.colorheader {
+    background: linear-gradient(to right, #0A3565, #1782D9);
+}
+
+.bg-img {
+    width: 100%;
+    
+}
+
+.carousel-caption {
+    top: 5%;
+    margin: auto;
+    width: 50%;
+    border: 0;
+    padding: 10px;
+    text-align: center;
+
+}
+
+.bg-banner {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}

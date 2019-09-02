@@ -30,20 +30,6 @@ class AppHeader extends React.Component {
     };
   }
  
-  // componentDidMount(){
-  //   let id_user = localStorage.getItem('USER_ID')
-  //   let token = localStorage.getItem('TOKEN')
-  //   Axios.get(`http://api-museek.herokuapp.com/users/${id_user}`, {
-  //     headers: {
-  //       Authorization: `Bearer ${token}`
-  //     }
-  //   })
-  //   .then(res => {
-  //     this.setState({
-  //       user: res.data.result
-  //     })
-  //   })
-  // }
  
   toggle() {
     this.setState({
@@ -87,35 +73,17 @@ class AppHeader extends React.Component {
     }
     return (
       <div>
-        <Navbar color="info" light expand="md">
-        <Container>
-          <NavbarBrand ><Link to='/' className="text-white">HOMEPAGE</Link></NavbarBrand>
+        <Navbar id="navbar" color="light" className="colorheader" light expand="md" >
+          <Container>
+          <NavbarBrand href="/" className="napbar">
+            <img src="https://res.cloudinary.com/monggovestplus/image/upload/v1551762164/logomonggovest.png" height="35" />
+          </NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse className="" isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
                 <NavLink ><Link to='/investasi' className="text-white">Investasi</Link></NavLink>
               </NavItem>
-              <NavItem>
-                <NavLink className="text-white" href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
-              </NavItem>
-              <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle nav caret className="text-white">
-                  Options
-                </DropdownToggle>
-                <DropdownMenu right>
-                  <DropdownItem>
-                    Option 1
-                  </DropdownItem>
-                  <DropdownItem>
-                    Option 2
-                  </DropdownItem>
-                  <DropdownItem divider />
-                  <DropdownItem>
-                    Reset
-                  </DropdownItem>
-                </DropdownMenu>
-              </UncontrolledDropdown>
               <NavItem>
                 {isLog}
               </NavItem>

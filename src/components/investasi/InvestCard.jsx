@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import {
     Card, CardImg, CardText, CardBody,
-    CardTitle, Container, Row, Spinner
+    CardTitle, Container, Row, Spinner,
+    Form,FormGroup,Label,Col, Input
 } from 'reactstrap';
 import Axios from 'axios';
 
@@ -11,13 +12,19 @@ export default class InvestCard extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            search: "",
             datas: [],
             isLoading: true
-        }
+        };
+        this.handleChangesearch = this.handleChangesearch.bind(this)
+        this.sendData = this.sendData.bind(this)
     }
 
     componentDidMount() {
-        Axios.get(`http://localhost:6780/api/user/komoditas/`)
+        Axios.post(`http://localhost:6780/api/user/komoditas/cari`,
+        {
+            text: this.state.search,
+        })
             .then(res => {
                 this.setState({
                     datas: res.data.result,
@@ -25,6 +32,23 @@ export default class InvestCard extends Component {
                 })
             })
     }
+    sendData(e) {
+        e.preventDefault();
+        Axios.post(`http://localhost:6780/api/user/komoditas/cari`,
+        {
+            text: this.state.search,
+        })
+            .then(res => {
+                this.setState({
+                    datas: res.data.result,
+                    isLoading: false
+                })
+            })
+    }
+    handleChangesearch(event) {
+        this.setState({search: event.target.value});
+    }
+
 
     render() {
         let Spin;
@@ -33,8 +57,16 @@ export default class InvestCard extends Component {
         } else {
             Spin = <Container>
                 <div>
-                    <h2>Content</h2>
+                    <h2>Daftar Investasi</h2>
                 </div>
+                <Form onSubmit={this.sendData}>
+                <FormGroup row>
+                                <Label for="exampleEmail" sm={2}>cari</Label>
+                                <Col sm={10}>
+                                    <Input type="text" value={this.state.search} onChange={this.handleChangesearch} placeholder="cari" />
+                                </Col>
+                            </FormGroup>
+                </Form>
                 <Row>
                     {
                         this.state.datas.map(data =>
